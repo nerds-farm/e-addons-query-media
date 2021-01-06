@@ -3,7 +3,7 @@
 /**
  *
  * @wordpress-plugin
- * Plugin Name:       e-addons Query Media
+ * Plugin Name:       e-addons Query MEDIA
  * Plugin URI:        https://e-addons.com
  * Description:       The must have Elementor suite for Nerds
  * Version:           1.0.1

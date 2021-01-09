@@ -303,6 +303,12 @@ class Query_Media extends Base_Query {
         'satic_list'
         */
         $this->add_control(
+            'query_debug', [
+                'label' => '<span style="color: #fff; background-color: #93003c; padding: 5px 10px; border-radius: 20px;">'.__('Show query for DEBUG', 'e-addons').'</span>',
+                'type' => Controls_Manager::SWITCHER,
+            ]
+        );
+        $this->add_control(
           'query_type', [
             'label' => __('Query Type', 'e-addons'),
             'type' => 'ui_selector',
@@ -1240,8 +1246,17 @@ class Query_Media extends Base_Query {
     /*
     - Lightbox
     */
-    
+   
     public function items_query_controls() { 
+        $this->add_control(
+            'heading_imageoptions',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'show_label' => false,
+                'raw' => '<i class="fas fa-image"></i> &nbsp;'.__('image:', 'e-addons'),
+                'content_classes' => 'e-add-icon-heading',
+            ]
+        );
         $this->add_control(
 			'gallery_link',
 			[
@@ -1616,11 +1631,13 @@ class Query_Media extends Base_Query {
                     break;
             }
         }
+        
+        if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
+            if(!empty($this->get_settings_for_display('query_debug'))){
+                echo '<pre>'; var_dump($args); echo '</pre>';
+            }
+        }
 
-        /*
-        -------- COMMENTS -------
-        */
-        //var_dump($args);
         $query_p = new \WP_Query( $args );
         $this->query = $query_p;
     }

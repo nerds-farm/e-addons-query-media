@@ -1249,11 +1249,11 @@ class Query_Media extends Base_Query {
    
     public function items_query_controls() { 
         $this->add_control(
-            'heading_imageoptions',
+            'heading_imagelink',
             [
                 'type' => Controls_Manager::RAW_HTML,
                 'show_label' => false,
-                'raw' => '<i class="fas fa-image"></i> &nbsp;'.__('image:', 'e-addons'),
+                'raw' => '<i class="fas fa-external-link-square-alt"></i> &nbsp;'.__('LINK & LIGHTBOX:', 'e-addons'),
                 'content_classes' => 'e-add-icon-heading',
             ]
         );
@@ -1286,18 +1286,27 @@ class Query_Media extends Base_Query {
 				],
             ]
         );
+        $this->add_control(
+            'heading_imageoptions',
+            [
+                'type' => Controls_Manager::RAW_HTML,
+                'show_label' => false,
+                'raw' => '<i class="fas fa-image"></i> &nbsp;'.__('IMAGE OPTIONS:', 'e-addons'),
+                'content_classes' => 'e-add-icon-heading',
+            ]
+        );
         $this->add_group_control(
             Group_Control_Image_Size::get_type(), [
                 'name' => 'thumbnail_size',
                 'label' => __('Image Format', 'e-addons'),
                 'default' => 'large',
-                'separator' => 'before'
             ]
         );
         $this->add_responsive_control(
             'ratio_image', [
                 'label' => __('Image Ratio', 'e-addons'),
                 'type' => Controls_Manager::SLIDER,
+                'separator' => 'before',
                 'range' => [
                     'px' => [
                         'min' => 0.1,
@@ -1365,7 +1374,7 @@ class Query_Media extends Base_Query {
         );
         $this->add_control(
             'use_bgimage', [
-                'label' => __('Background Image', 'e-addons'),
+                'label' => __('Enable Background mode', 'e-addons'),
                 'type' => Controls_Manager::SWITCHER,
                 'separator' => 'before',
                 'render_type' => 'template',

@@ -238,7 +238,7 @@ class Query_Media extends Base_Query {
                             [
                                 'name' => 'metafield_type',
                                 'operator' => 'in',
-                                'value' => ['text','image','file']
+                                'value' => ['text','image','file','array']
                             ]
                         ]
                     ]

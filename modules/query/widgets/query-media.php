@@ -1814,7 +1814,7 @@ class Query_Media extends Base_Query {
             // 1 - leggo tutti i termini di questa taxonomy
             $taxterms = get_terms( array(
                 'taxonomy' => $tax,
-                'hide_empty' => true,
+                'hide_empty' => false,
             ) );
             // 2 - li confronto con quelli selezionati e ne ricavo solo quelli di qusta taxonomy
             foreach ($taxterms as $term){

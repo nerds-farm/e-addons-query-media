@@ -126,6 +126,7 @@ class Query_Media extends Base_Query {
                     'item_custommeta' => __('Custom Fields', 'e-addons'),
                     'item_readmore' => __('Read More', 'e-addons'),
                     'item_label' => __('Label', 'e-addons'),
+                    'item_template' => __('Template', 'e-addons'),
                 ],
                 'default' => '',
             ]
@@ -142,6 +143,9 @@ class Query_Media extends Base_Query {
             // +********************* Label
             $this->controls_items_label_content($repeater);
             
+            // +********************* Template
+            $this->controls_items_template_content($repeater);
+
             // +********************* Image
             //$this->controls_items_image_content($repeater,'media' );
 
@@ -174,6 +178,9 @@ class Query_Media extends Base_Query {
 
         $repeater->start_controls_tab('tab_style', [
             'label' => __('Style', 'e-addons'),
+            'condition' => [
+                'item_type!' => 'item_template'
+            ]
         ]);
 
             // STYLE - TAB (9)
@@ -226,7 +233,11 @@ class Query_Media extends Base_Query {
                     [
                         'name' => 'item_type',
                         'operator' => '!in',
-                        'value' => ['item_author','item_readmore','item_custommeta'],
+                        'value' => ['item_author','item_readmore','item_custommeta','item_template',
+                                    'item_caption',
+                                    'item_alternativetext',
+                                    'item_imagemeta',
+                                    'item_mimetype'],
                     ],
                     [
                         'relation' => 'and',

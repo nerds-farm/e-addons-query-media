@@ -58,7 +58,7 @@ class Justifiedgrid extends Base {
         // ***************** JUSTIFIED
         $this->add_control(
             'justified_rowHeight', [
-                'label' => __('Row Height', 'dynamic-content-for-elementor'),
+                'label' => __('Row Height', 'e-addons'),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => '',
@@ -75,7 +75,7 @@ class Justifiedgrid extends Base {
         );
         $this->add_control(
             'justified_margin', [
-                'label' => __('Images space', 'dynamic-content-for-elementor'),
+                'label' => __('Images space', 'e-addons'),
                 'type' => Controls_Manager::SLIDER,
                 'default' => [
                     'size' => '',
@@ -92,7 +92,7 @@ class Justifiedgrid extends Base {
         );
         $this->add_control(
             'justified_lastRow', [
-                'label' => __('Last row', 'dynamic-content-for-elementor'),
+                'label' => __('Last row', 'e-addons'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'justify',
                 'options' => [

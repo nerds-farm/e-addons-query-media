@@ -336,7 +336,7 @@ class Query_Media extends Base_Query {
                     'icon' => 'fa fa-cogs',
                 ],
                 'get_attachments' => [
-                    'title' => __('All Attachments','e-addons'),
+                    'title' => __('From all Attachments','e-addons'),
                     'return_val' => 'val',
                     'icon' => 'fa fa-images',
                 ],
@@ -1497,55 +1497,9 @@ class Query_Media extends Base_Query {
         $settings = $this->get_settings_for_display();
         if (empty($settings))
             return;
-
-        /** @var Module_Query $elementor_query */
-        //$elementor_query = Module_Query::instance();
-        //$this->query = $elementor_query->get_query( $this, 'posts', $query_args, [] );
-        
+         
         $args = array();
-        /*
-        'post_type'
-        --'posts_per_page'
-        --'posts_offset'
-        --'orderby'
-        --'metakey' ...
-        --'order'
-        --'exclude_posts'
-        */
 
-        //@p è scontato che il type è "attachment"
-        $args['post_type'] = 'attachment';
-        $args['post_status'] = ['inherit','publish'];
-       
-        // limit posts per page
-        if( !empty($settings['posts_per_page']) )
-        $args['posts_per_page'] = $settings['posts_per_page'];
-        
-        // offset
-        if( !empty($settings['posts_offset']) )
-        $args['offset'] = $settings['posts_offset'];
-        
-        // paginazione
-        if( !empty( $settings['pagination_enable'] ) || !empty($settings['infiniteScroll_enable']) )
-        $args['paged'] = $this->get_current_page();
-
-        
-        // order by
-        if( !empty($settings['orderby']) )
-        $args['orderby'] = $settings['orderby'];
-        //meta key order
-        if( !empty($settings['metakey']) )
-        $args['meta_key'] = $settings['metakey'];
-        // order asc-desc
-        if( !empty($settings['order']) )
-        $args['order'] = $settings['order'];
-
-        // exclusion posts
-        $excludedPosts = array();
-        if( !empty($settings['exclude_posts']) ) array_push($excludedPosts, $settings['exclude_posts'] );
-        $args['post__not_in'] = $excludedPosts;
-        
-        
         /*
         '1 - automatic_mode'
         '2 - all attachments'
@@ -1618,6 +1572,49 @@ class Query_Media extends Base_Query {
             break;
         
         }
+
+        /*
+        'post_type'
+        --'posts_per_page'
+        --'posts_offset'
+        --'orderby'
+        --'metakey' ...
+        --'order'
+        --'exclude_posts'
+        */
+
+        //@p è scontato che il type è "attachment"
+        $args['post_type'] = 'attachment';
+        $args['post_status'] = ['inherit','publish'];
+       
+        // limit posts per page
+        if( !empty($settings['posts_per_page']) )
+        $args['posts_per_page'] = $settings['posts_per_page'];
+        
+        // offset
+        if( !empty($settings['posts_offset']) )
+        $args['offset'] = $settings['posts_offset'];
+        
+        // paginazione
+        if( !empty( $settings['pagination_enable'] ) || !empty($settings['infiniteScroll_enable']) )
+        $args['paged'] = $this->get_current_page();
+
+        
+        // order by
+        if( !empty($settings['orderby']) )
+        $args['orderby'] = $settings['orderby'];
+        //meta key order
+        if( !empty($settings['metakey']) )
+        $args['meta_key'] = $settings['metakey'];
+        // order asc-desc
+        if( !empty($settings['order']) )
+        $args['order'] = $settings['order'];
+
+        // exclusion posts
+        $excludedPosts = array();
+        if( !empty($settings['exclude_posts']) ) array_push($excludedPosts, $settings['exclude_posts'] );
+        $args['post__not_in'] = $excludedPosts;
+        
         /*
         'query_filter'
             'date'

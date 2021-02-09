@@ -308,7 +308,6 @@ class Query_Media extends Base_Query {
         /*
         'automatic_mode'
         'get_attachments'
-        'post_parent'
         'custommeta_source'
         'specific_posts'
         'satic_list'
@@ -325,30 +324,31 @@ class Query_Media extends Base_Query {
             'type' => 'ui_selector',
             'toggle' => false,
             'type_selector' => 'icon',
-            'columns_grid' => 4,
+            'columns_grid' => 3,
             'separator' => 'before',
             'label_block' => true,
             'options' => [
-
+                'specific_posts' => [
+                    'title' => __('From Specific Attachmennt','e-addons'),
+                    'return_val' => 'val',
+                    'icon' => 'far fa-copy',
+                ],
+                /*
                 'automatic_mode' => [
                     'title' => __('Automatic Mode','e-addons'),
                     'return_val' => 'val',
                     'icon' => 'fa fa-cogs',
                 ],
+                */
                 'get_attachments' => [
-                    'title' => __('From all Attachments','e-addons'),
+                    'title' => __('From media library','e-addons'),
                     'return_val' => 'val',
                     'icon' => 'fa fa-images',
                 ],
                 'custommeta_source' => [
-                    'title' => __('Custommeta Gallery','e-addons'),
+                    'title' => __('From Custommeta Gallery','e-addons'),
                     'return_val' => 'val',
                     'icon' => 'fas fa-check-double',
-                ],
-                'specific_posts' => [
-                    'title' => __('From Specific Attachmennt','e-addons'),
-                    'return_val' => 'val',
-                    'icon' => 'far fa-copy',
                 ],
                 
             ],
@@ -1514,21 +1514,35 @@ class Query_Media extends Base_Query {
                 global $wp_query;
                 //echo '<pre>'; var_dump($wp_query); echo '</pre>';
                 
-                /*if (is_singular()) {
+                if (is_singular()) {
                     $post = get_post();
-                    $args['post_type'] = $post->post_type;
-                    if ($settings['dynamic_my_siblings']) {
+                    
+                    $args['post_parent'] = get_the_ID();
+
+                    /*if ($settings['dynamic_my_siblings']) {
                         $args['child_of'] = $post->post_parent;
                         $args['exclude'] = $post->ID;
                     }
                     if ($settings['dynamic_my_children']) {
                         $args['child_of'] = $post->ID;
-                    }
+                    }*/
+                    $attachargs = array(
+                        'post_parent' => $post->ID,
+                        'post_type' => 'attachment',
+                        'post_mime_type' => 'image',
+                        'posts_per_page' => -1,
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC',
+                        'status' => 'any'
+                    );
+                     
+                    $attachments = get_children( $attachargs );
+                    
+                    var_dump($post->ID);
+
                 } else {
                     $args = $wp_query->query;
-                }*/
-
-                // @FISH PENSACI TU ;-*
+                }
             break;
             
             case 'custommeta_source':

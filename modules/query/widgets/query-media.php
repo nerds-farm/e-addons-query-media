@@ -304,13 +304,12 @@ class Query_Media extends Base_Query {
                 ]
         );
         /*
-          'automatic_mode'
-          'get_attachments'
-          'post_parent'
-          'custommeta_source'
-          'specific_posts'
-          'satic_list'
-         */
+        'automatic_mode'
+        'get_attachments'
+        'custommeta_source'
+        'specific_posts'
+        'satic_list'
+        */
         $this->add_control(
                 'query_debug', [
             'label' => '<span style="color: #fff; background-color: #93003c; padding: 5px 10px; border-radius: 20px;">' . __('Show query for DEBUG', 'e-addons') . '</span>',
@@ -323,29 +322,30 @@ class Query_Media extends Base_Query {
             'type' => 'ui_selector',
             'toggle' => false,
             'type_selector' => 'icon',
-            'columns_grid' => 4,
+            'columns_grid' => 3,
             'separator' => 'before',
             'label_block' => true,
             'options' => [
-                /* 'automatic_mode' => [
-                  'title' => __('Automatic Mode','e-addons'),
-                  'return_val' => 'val',
-                  'icon' => 'fa fa-cogs',
-                  ], */
+                'specific_posts' => [
+                    'title' => __('From Specific Attachmennt','e-addons'),
+                    'return_val' => 'val',
+                    'icon' => 'far fa-copy',
+                ],
+                /*
+                'automatic_mode' => [
+                    'title' => __('Automatic Mode','e-addons'),
+                    'return_val' => 'val',
+                    'icon' => 'fa fa-cogs',
+                ],
+                */
                 'get_attachments' => [
-                    'title' => __('All Attachments', 'e-addons'),
                     'return_val' => 'val',
                     'icon' => 'fa fa-images',
                 ],
                 'custommeta_source' => [
-                    'title' => __('Gallery Custom Field ', 'e-addons'),
+                    'title' => __('From media library','e-addons'),
                     'return_val' => 'val',
                     'icon' => 'fas fa-check-double',
-                ],
-                'specific_posts' => [
-                    'title' => __('Selected Attachment', 'e-addons'),
-                    'return_val' => 'val',
-                    'icon' => 'far fa-copy',
                 ],
             ],
             'default' => 'get_attachments',
@@ -1390,54 +1390,10 @@ class Query_Media extends Base_Query {
         $settings = $this->get_settings_for_display();
         if (empty($settings))
             return;
-
-        /** @var Module_Query $elementor_query */
-        //$elementor_query = Module_Query::instance();
-        //$this->query = $elementor_query->get_query( $this, 'posts', $query_args, [] );
-
+                    'title' => __('Gallery Custom Field ', 'e-addons'),
         $args = array();
-        /*
-          'post_type'
-          --'posts_per_page'
-          --'posts_offset'
-          --'orderby'
-          --'metakey' ...
-          --'order'
-          --'exclude_posts'
-         */
+                
 
-        //@p è scontato che il type è "attachment"
-        $args['post_type'] = 'attachment';
-        $args['post_status'] = ['inherit', 'publish'];
-
-        // limit posts per page
-        if (!empty($settings['posts_per_page']))
-            $args['posts_per_page'] = $settings['posts_per_page'];
-
-        // offset
-        if (!empty($settings['posts_offset']))
-            $args['offset'] = $settings['posts_offset'];
-
-        // paginazione
-        if (!empty($settings['pagination_enable']) || !empty($settings['infiniteScroll_enable']))
-            $args['paged'] = $this->get_current_page();
-
-
-        // order by
-        if (!empty($settings['orderby']))
-            $args['orderby'] = $settings['orderby'];
-        //meta key order
-        if (!empty($settings['metakey']))
-            $args['meta_key'] = $settings['metakey'];
-        // order asc-desc
-        if (!empty($settings['order']))
-            $args['order'] = $settings['order'];
-
-        // exclusion posts
-        $excludedPosts = array();
-        if (!empty($settings['exclude_posts']))
-            array_push($excludedPosts, $settings['exclude_posts']);
-        $args['post__not_in'] = $excludedPosts;
 
 
         /*
@@ -1454,22 +1410,9 @@ class Query_Media extends Base_Query {
                 global $wp_query;
                 //echo '<pre>'; var_dump($wp_query); echo '</pre>';
 
-                /* if (is_singular()) {
-                  $post = get_post();
-                  $args['post_type'] = $post->post_type;
-                  if ($settings['dynamic_my_siblings']) {
-                  $args['child_of'] = $post->post_parent;
-                  $args['exclude'] = $post->ID;
-                  }
-                  if ($settings['dynamic_my_children']) {
-                  $args['child_of'] = $post->ID;
-                  }
-                  } else {
-                  $args = $wp_query->query;
-                  } */
-
-                // @FISH PENSACI TU ;-*
-                break;
+        /** @var Module_Query $elementor_query */
+        //$elementor_query = Module_Query::instance();
+        //$this->query = $elementor_query->get_query( $this, 'posts', $query_args, [] );
 
             case 'custommeta_source':
                 $custommeta_source_key = $settings['custommeta_source_key'];
@@ -1510,6 +1453,49 @@ class Query_Media extends Base_Query {
 
                 break;
         }
+
+        /*
+        'post_type'
+        --'posts_per_page'
+        --'posts_offset'
+        --'orderby'
+        --'metakey' ...
+        --'order'
+        --'exclude_posts'
+        */
+
+        //@p è scontato che il type è "attachment"
+        $args['post_type'] = 'attachment';
+        $args['post_status'] = ['inherit','publish'];
+       
+        // limit posts per page
+        if( !empty($settings['posts_per_page']) )
+        $args['posts_per_page'] = $settings['posts_per_page'];
+        
+        // offset
+        if( !empty($settings['posts_offset']) )
+        $args['offset'] = $settings['posts_offset'];
+        
+        // paginazione
+        if( !empty( $settings['pagination_enable'] ) || !empty($settings['infiniteScroll_enable']) )
+        $args['paged'] = $this->get_current_page();
+
+        
+        // order by
+        if( !empty($settings['orderby']) )
+        $args['orderby'] = $settings['orderby'];
+        //meta key order
+        if( !empty($settings['metakey']) )
+        $args['meta_key'] = $settings['metakey'];
+        // order asc-desc
+        if( !empty($settings['order']) )
+        $args['order'] = $settings['order'];
+
+        // exclusion posts
+        $excludedPosts = array();
+        if( !empty($settings['exclude_posts']) ) array_push($excludedPosts, $settings['exclude_posts'] );
+        $args['post__not_in'] = $excludedPosts;
+        
         /*
           'query_filter'
           'date'
@@ -1917,3 +1903,12 @@ class Query_Media extends Base_Query {
       //var_dump($settings['layout_items']);
       } */
 }
+        /*
+          'post_type'
+          --'posts_per_page'
+          --'posts_offset'
+          --'orderby'
+          --'metakey' ...
+          --'order'
+          --'exclude_posts'
+         */

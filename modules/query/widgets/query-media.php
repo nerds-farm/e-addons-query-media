@@ -334,12 +334,12 @@ class Query_Media extends Base_Query {
                     ],
                     */
                     'specific_posts' => [
-                        'title' => __('From Specific Attachmennt', 'e-addons'),
+                        'title' => __('Specific Attachment', 'e-addons'),
                         'return_val' => 'val',
                         'icon' => 'far fa-copy',
                     ],
                     'get_attachments' => [
-                        'title' => __('From Media Library', 'e-addons'),
+                        'title' => __('Media Library', 'e-addons'),
                         'return_val' => 'val',
                         'icon' => 'fa fa-images',
                     ],
@@ -1142,6 +1142,8 @@ class Query_Media extends Base_Query {
                 ]
         );
         $this->end_controls_section();
+        
+        $this->add_no_result_section();
     }
 
     // --------------------------------- [ Media Options ]
@@ -1662,7 +1664,7 @@ class Query_Media extends Base_Query {
          */
         $terms_args = array();
 
-        $taxonomies_from_type = get_object_taxonomies($settings['post_type']);
+        $taxonomies_from_type = get_object_taxonomies('attachment');
 
         $terms_included = array();
         $terms_excluded = array();
@@ -1686,22 +1688,16 @@ class Query_Media extends Base_Query {
                         array_push($terms_included, $term->term_id);
                     }
                 }
-                //
-                var_dump($terms_included);
                 break;
         }
         
         // l'esclusione vale in ogni caso, permette di modellare la queri in caso di termini multipli
         if (!empty($settings['exclude_term'])) {
             $terms_excluded = $settings['exclude_term'];
+            $terms_excluded = Utils::explode( $terms_excluded );
         }
         //risolvo bug: quando il dato è una stringa o numero e non Array, quindi converto.
-        if(!is_array($terms_included)){
-            $terms_included = explode( ',', $terms_included );
-        }
-        if(!is_array($terms_exclude)){
-            $terms_exclude = explode( ',', $terms_exclude );
-        }
+        $terms_included = Utils::explode( $terms_included );        
         //var_dump($terms_included);
 
         //

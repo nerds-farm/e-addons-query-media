@@ -51,7 +51,7 @@ class Query_Media extends Base_Query {
         return 'eadd-query-media';
     }
 
-    protected $querytype = 'media';
+    protected $querytype = 'attachment';
 
     protected function _register_skins() {
         $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Grid($this));
@@ -147,18 +147,18 @@ class Query_Media extends Base_Query {
         $this->controls_items_template_content($repeater);
 
         // +********************* Image
-        //$this->controls_items_image_content($repeater,'media' );
+        //$this->controls_items_image_content($repeater,'attachment' );
         // +********************* Title
-        $this->controls_items_title_content($repeater, 'media');
+        $this->controls_items_title_content($repeater, 'attachment');
 
         // +********************* Date
-        $this->controls_items_date_content($repeater, 'media');
+        $this->controls_items_date_content($repeater, 'attachment');
 
         // +********************* Terms of Taxonomy [metadata] (Category, Tag, CustomTax)
         $this->controls_items_termstaxonomy_content($repeater);
 
         // +********************* Content/Excerpt
-        $this->controls_items_contentdescription_content($repeater, 'media');
+        $this->controls_items_contentdescription_content($repeater, 'attachment');
 
         // +********************* ReadMore
         $this->controls_items_readmore_content($repeater);
@@ -167,7 +167,7 @@ class Query_Media extends Base_Query {
         $this->controls_items_authorbox_content($repeater);
 
         // +********************* CustoFields (ACF, Pods, Toolset, Metabox)
-        $this->custommeta_items($repeater, 'media');
+        $this->custommeta_items($repeater, 'attachment');
 
         // +********************* ImageMeta (Dimension, Size, File, [copyright, iso, focal, ecc])
         $this->controls_items_imagemeta_content($repeater);

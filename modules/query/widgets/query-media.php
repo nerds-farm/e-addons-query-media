@@ -60,14 +60,7 @@ class Query_Media extends Base_Query {
         $this->add_skin(new \EAddonsQueryMedia\Modules\Query\Skins\Justifiedgrid($this));
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Gridfilters( $this ) );
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Timeline( $this ) );
-        /*
-          $this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Gridtofullscreen3d( $this ) );
-          $this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Crossroadsslideshow( $this ) );
-          $this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Nextpost( $this ) );
-          $this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Threed( $this ) );
-          $this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Triggerscroll( $this ) );
-         */
-        // $this->add_skin( new Skins\Skin_Smoothscroll( $this ) );        
+             
     }
 
     protected function _register_controls() {
@@ -138,7 +131,12 @@ class Query_Media extends Base_Query {
         $repeater->start_controls_tab('tab_content', [
             'label' => __('Content', 'e-addons'),
         ]);
-
+        $repeater->add_control(
+                'item_text_label', [
+            'label' => __('Label', 'e-addons'),
+            'type' => Controls_Manager::TEXT,
+                ]
+        );
         // CONTENT - TAB
         // +********************* Label
         $this->controls_items_label_content($repeater);
@@ -288,8 +286,8 @@ class Query_Media extends Base_Query {
                     ] */
                 ],
                 //item_type.replace("item_", "")
-                'title_field' => '<# var etichetta = item_type; etichetta = etichetta.replace("item_", ""); #><b class="e-add-item-name"><i class="fa {{{ item_type+"-ic" }}}" aria-hidden="true"></i> {{{ etichetta }}}</b>',
-            ]
+                'title_field' => '<# var etichetta = item_type; etichetta = etichetta.replace("item_", ""); #><b class="e-add-item-name"><i class="fa {{{ item_type+"-ic" }}}" aria-hidden="true"></i> {{{item_text_label}}} | {{{ etichetta }}}</b>',
+                ]
         );
 
         $this->end_controls_section();

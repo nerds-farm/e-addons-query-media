@@ -302,10 +302,9 @@ class Query_Media extends Base_Query {
             ]
         );
         /*
-          'automatic_mode'
+          'specific_posts'
           'get_attachments'
           'custommeta_source'
-          'specific_posts'
           'satic_list'
          */
         $this->add_control(

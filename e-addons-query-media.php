@@ -5,11 +5,11 @@
  * @wordpress-plugin
  * Plugin Name:       e-addons Query MEDIA
  * Plugin URI:        https://e-addons.com
- * Description:       The must have Elementor suite for Nerds
+ * Description:       Create your own Media Gallery in a creative and simple way
  * Version:           1.0.1
  * Author:            Nerds Farm
  * Author URI:        https://nerds.farm
- * Text Domain:       e-addons-media
+ * Text Domain:       e-addons-query-media
  * Domain Path:       /languages
  * License:           GPL-3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt

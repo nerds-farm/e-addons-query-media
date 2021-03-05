@@ -3,7 +3,7 @@
 /**
  *
  * @wordpress-plugin
- * Plugin Name:       e-addons Query MEDIA
+ * Plugin Name:       e-addons QUERY MEDIA
  * Plugin URI:        https://e-addons.com
  * Description:       Create your own Media Gallery in a creative and simple way
  * Version:           1.0.1

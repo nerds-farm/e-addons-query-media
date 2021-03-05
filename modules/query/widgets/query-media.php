@@ -1403,19 +1403,17 @@ class Query_Media extends Base_Query {
             //$this->query = $elementor_query->get_query( $this, 'posts', $query_args, [] );
 
             case 'custommeta_source':
+                /*
                 $custommeta_source_key = $settings['custommeta_source_key'];
                 //$custommeta_source_type = $settings['custommeta_source_type'];
-
                 if (empty($custommeta_source_key))
                     return;
-
                 $type_of_location = Query_Utils::is_type_of();
-                // @fish to do....
                 $id_of_location = Query_Utils::is_id_of();
-
                 $custommeta_source_value = get_metadata($type_of_location, $id_of_location, $custommeta_source_key, true);
+                */               
+                $custommeta_source_value = $this->get_custom_meta_source_value($settings);
                 if (!empty($custommeta_source_value)) {
-
                     // default args
                     $args['posts_per_page'] = -1;
                     $args['orderby'] = 'post__in';
@@ -1423,22 +1421,20 @@ class Query_Media extends Base_Query {
                     $args['post__in'] = $custommeta_source_value;
                 }
                 break;
-            case 'specific_posts':
-                $specific_attachments = $settings['specific_attachments'];
-
-
-                $items_specific_posts = array();
-                foreach ($specific_attachments as $item_sp) {
-                    array_push($items_specific_posts, $item_sp['id']);
+            case 'specific_posts':                
+                if (!empty($settings['specific_attachments'])) {
+                    $items_specific_posts = array();
+                    foreach ($settings['specific_attachments'] as $item_sp) {
+                        if (!empty($item_sp['id'])) {
+                            array_push($items_specific_posts, $item_sp['id']);
+                        }
+                    }                
+                    if (count($items_specific_posts)) {
+                        $args['posts_per_page'] = -1;
+                        $args['orderby'] = 'post__in';
+                        $args['post__in'] = $items_specific_posts;
+                    }
                 }
-                if (count($items_specific_posts)) {
-                    // default args
-                    $args['posts_per_page'] = -1;
-                    $args['orderby'] = 'post__in';
-                    //
-                    $args['post__in'] = $items_specific_posts;
-                }
-
                 break;
         }
 

@@ -56,6 +56,12 @@
 }
 /* --------------- */
 /* @p correzioni per e-addons */
+.e-add-posts-container.e-add-skin-justifiedgrid .e-add-post-image.e-add-post-overlayimage, 
+.e-add-posts-container.e-add-skin-justifiedgrid .e-add-post-block.e-add-post-overlayhover, 
+.e-add-posts-container.e-add-skin-justifiedgrid .e-add-post-image.e-add-post-overlayhover:not(.e-add-post-bgimage) {
+  position: static;
+  display: block;
+}
 .justified-gallery .e-add-item:not(.e-add-item_image){
   position: relative;
   z-index: 2;

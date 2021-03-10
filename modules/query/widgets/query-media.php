@@ -60,7 +60,7 @@ class Query_Media extends Base_Query {
         $this->add_skin(new \EAddonsQueryMedia\Modules\Query\Skins\Justifiedgrid($this));
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Gridfilters( $this ) );
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Timeline( $this ) );
-        $this->add_skin( new \EAddonsForElementor\Modules\Query\Skins\Table( $this ) );  
+        $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Table($this));
     }
 
     protected function _register_controls() {
@@ -272,21 +272,21 @@ class Query_Media extends Base_Query {
           item_imagemeta
          */
         $this->add_control(
-            'list_items',
-            [
-                'label' => __('ITEMS', 'e-addons'),
-                'show_label' => false,
-                'separator' => 'before',
-                'type' => Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'prevent_empty' => false,
-                'default' => [
-                /* [
-                    'item_type' => 'item_image',
-                    ] */
-                ],
-                //item_type.replace("item_", "")
-                'title_field' => '<# var etichetta = item_type; etichetta = etichetta.replace("item_", ""); #><b class="e-add-item-name"><i class="fa {{{ item_type+"-ic" }}}" aria-hidden="true"></i> {{{item_text_label}}} | {{{ etichetta }}}</b>',
+                'list_items',
+                [
+                    'label' => __('ITEMS', 'e-addons'),
+                    'show_label' => false,
+                    'separator' => 'before',
+                    'type' => Controls_Manager::REPEATER,
+                    'fields' => $repeater->get_controls(),
+                    'prevent_empty' => false,
+                    'default' => [
+                    /* [
+                      'item_type' => 'item_image',
+                      ] */
+                    ],
+                    //item_type.replace("item_", "")
+                    'title_field' => '<# var etichetta = item_type; etichetta = etichetta.replace("item_", ""); #><b class="e-add-item-name"><i class="fa {{{ item_type+"-ic" }}}" aria-hidden="true"></i> {{{item_text_label}}} | {{{ etichetta }}}</b>',
                 ]
         );
 
@@ -296,10 +296,10 @@ class Query_Media extends Base_Query {
         //@p il TAB Query
         // ------------------------------------------------------------------ [SECTION - QUERY MEDIA]
         $this->start_controls_section(
-            'section_query_posts', [
-                'label' => '<i class="eaddicon eicon-settings" aria-hidden="true"></i> ' . __('Query', 'e-addons'),
-                'tab' => 'e_query',
-            ]
+                'section_query_posts', [
+            'label' => '<i class="eaddicon eicon-settings" aria-hidden="true"></i> ' . __('Query', 'e-addons'),
+            'tab' => 'e_query',
+                ]
         );
         /*
           'specific_posts'
@@ -308,63 +308,63 @@ class Query_Media extends Base_Query {
           'satic_list'
          */
         $this->add_control(
-            'query_debug', [
-                'label' => '<span style="color: #fff; background-color: #93003c; padding: 5px 10px; border-radius: 20px;">' . __('Show query for DEBUG', 'e-addons') . '</span>',
-                'type' => Controls_Manager::SWITCHER,
-            ]
+                'query_debug', [
+            'label' => '<span style="color: #fff; background-color: #93003c; padding: 5px 10px; border-radius: 20px;">' . __('Show query for DEBUG', 'e-addons') . '</span>',
+            'type' => Controls_Manager::SWITCHER,
+                ]
         );
         $this->add_control(
-            'query_type', [
-                'label' => __('Query Type', 'e-addons'),
-                'type' => 'ui_selector',
-                'toggle' => false,
-                'type_selector' => 'icon',
-                'columns_grid' => 3,
-                'separator' => 'before',
-                'label_block' => true,
-                'options' => [
-                    /*
-                    'automatic_mode' => [
-                    'title' => __('Automatic Mode','e-addons'),
+                'query_type', [
+            'label' => __('Query Type', 'e-addons'),
+            'type' => 'ui_selector',
+            'toggle' => false,
+            'type_selector' => 'icon',
+            'columns_grid' => 3,
+            'separator' => 'before',
+            'label_block' => true,
+            'options' => [
+                /*
+                  'automatic_mode' => [
+                  'title' => __('Automatic Mode','e-addons'),
+                  'return_val' => 'val',
+                  'icon' => 'fa fa-cogs',
+                  ],
+                 */
+                'specific_posts' => [
+                    'title' => __('Specific Attachment', 'e-addons'),
                     'return_val' => 'val',
-                    'icon' => 'fa fa-cogs',
-                    ],
-                    */
-                    'specific_posts' => [
-                        'title' => __('Specific Attachment', 'e-addons'),
-                        'return_val' => 'val',
-                        'icon' => 'far fa-copy',
-                    ],
-                    'get_attachments' => [
-                        'title' => __('Media Library', 'e-addons'),
-                        'return_val' => 'val',
-                        'icon' => 'fa fa-images',
-                    ],
-                    'custommeta_source' => [
-                        'title' => __('Custom Field Gallery', 'e-addons'),
-                        'return_val' => 'val',
-                        'icon' => 'fas fa-check-double',
-                    ],
+                    'icon' => 'far fa-copy',
                 ],
-                'default' => 'get_attachments',
-            ]
+                'get_attachments' => [
+                    'title' => __('Media Library', 'e-addons'),
+                    'return_val' => 'val',
+                    'icon' => 'fa fa-images',
+                ],
+                'custommeta_source' => [
+                    'title' => __('Custom Field Gallery', 'e-addons'),
+                    'return_val' => 'val',
+                    'icon' => 'fas fa-check-double',
+                ],
+            ],
+            'default' => 'get_attachments',
+                ]
         );
 
         // --------------------------------- [ Specific Posts-Pages ] 
         $this->add_control(
-            'specific_attachments',
-            [
-                'label' => __('Add Medias', 'elementor'),
-                'type' => Controls_Manager::GALLERY,
-                'default' => [],
-                'show_label' => false,
-                'dynamic' => [
-                    'active' => true,
-                ],
-                'condition' => [
-                    'query_type' => 'specific_posts',
-                ],
-            ]
+                'specific_attachments',
+                [
+                    'label' => __('Add Medias', 'elementor'),
+                    'type' => Controls_Manager::GALLERY,
+                    'default' => [],
+                    'show_label' => false,
+                    'dynamic' => [
+                        'active' => true,
+                    ],
+                    'condition' => [
+                        'query_type' => 'specific_posts',
+                    ],
+                ]
         );
 
         // --------------------------------- [ CustomMeta source ]
@@ -372,26 +372,26 @@ class Query_Media extends Base_Query {
 
         // --------------------------------- [ Automatic mode ]
         $this->add_control(
-            'avviso_automatic_mode',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fas fa-exclamation-circle"></i> ' . __('With this option will be used posts based on the current global Query. <div class="eadd-automatic-info">Ideal for native Archives pages: <ul><li>Templates in posts, pages or single cpt;</li> <li>Terms archives;</li> <li>Authors archives; </li></ul></div>', 'e-addons'),
-                'content_classes' => 'e-add-info-panel',
-                'condition' => [
-                    'query_type' => 'automatic_mode',
-                ],
-            ]
+                'avviso_automatic_mode',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fas fa-exclamation-circle"></i> ' . __('With this option will be used posts based on the current global Query. <div class="eadd-automatic-info">Ideal for native Archives pages: <ul><li>Templates in posts, pages or single cpt;</li> <li>Terms archives;</li> <li>Authors archives; </li></ul></div>', 'e-addons'),
+                    'content_classes' => 'e-add-info-panel',
+                    'condition' => [
+                        'query_type' => 'automatic_mode',
+                    ],
+                ]
         );
         $this->add_control(
-            'options_heading', [
-                'label' => __('Options', 'e-addons'),
-                'type' => Controls_Manager::HEADING,
-                'separator' => 'before',
-                'condition' => [
-                    'query_type' => ['automatic_mode'],
-                ],
-            ]
+                'options_heading', [
+            'label' => __('Options', 'e-addons'),
+            'type' => Controls_Manager::HEADING,
+            'separator' => 'before',
+            'condition' => [
+                'query_type' => ['automatic_mode'],
+            ],
+                ]
         );
 
         // --------------------------------- [ Custom Post Type ]
@@ -426,83 +426,83 @@ class Query_Media extends Base_Query {
                 ]
         );
         $this->add_control(
-            'posts_offset', [
-                'label' => __('Offset', 'e-addons'),
-                'type' => Controls_Manager::NUMBER,
-                'default' => '0',
-                'condition' => [
-                    'query_type' => ['get_attachments', 'automatic_mode'],
-                    'posts_per_page!' => '-1'
-                ],
-            ]
-        );
-        $this->add_control(
-            'orderby', [
-                'label' => __('Order By', 'e-addons'),
-                'type' => Controls_Manager::SELECT,
-                'options' => Query_Utils::get_post_orderby_options(),
-                'default' => 'date',
-                'condition' => [
-                    'query_type' => ['get_attachments', 'automatic_mode'],
-                ],
-            ]
-        );
-        $this->add_control(
-            'metakey', [
-                'label' => __('Custom Field', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Search Custom Field', 'e-addons'),
-                'label_block' => true,
-                'query_type' => 'metas',
-                'object_type' => 'attachment',
-                //'description' => __('Selected Post Meta value must be stored if format "Ymd", like ACF Date', 'e-addons'),
-                'separator' => 'after',
-                'condition' => [
-                    'query_type' => ['get_attachments', 'automatic_mode'],
-                    'orderby' => ['meta_value', 'meta_value_date', 'meta_value_num'],
+                'posts_offset', [
+            'label' => __('Offset', 'e-addons'),
+            'type' => Controls_Manager::NUMBER,
+            'default' => '0',
+            'condition' => [
+                'query_type' => ['get_attachments', 'automatic_mode'],
+                'posts_per_page!' => '-1'
+            ],
                 ]
-            ]
         );
         $this->add_control(
-            'order', [
-                'label' => __('Order', 'e-addons'),
-                'type' => Controls_Manager::SELECT,
-                'options' => [
-                    'ASC' => 'ASC',
-                    'DESC' => 'DESC'
-                ],
-                'default' => 'DESC',
-                'condition' => [
-                    'query_type' => ['get_attachments', 'automatic_mode'],
-                    'orderby!' => ['random'],
-                ],
+                'orderby', [
+            'label' => __('Order By', 'e-addons'),
+            'type' => Controls_Manager::SELECT,
+            'options' => Query_Utils::get_post_orderby_options(),
+            'default' => 'date',
+            'condition' => [
+                'query_type' => ['get_attachments', 'automatic_mode'],
+            ],
+                ]
+        );
+        $this->add_control(
+                'metakey', [
+            'label' => __('Custom Field', 'e-addons'),
+            'type' => 'e-query',
+            'placeholder' => __('Search Custom Field', 'e-addons'),
+            'label_block' => true,
+            'query_type' => 'metas',
+            'object_type' => 'attachment',
+            //'description' => __('Selected Post Meta value must be stored if format "Ymd", like ACF Date', 'e-addons'),
+            'separator' => 'after',
+            'condition' => [
+                'query_type' => ['get_attachments', 'automatic_mode'],
+                'orderby' => ['meta_value', 'meta_value_date', 'meta_value_num'],
             ]
+                ]
+        );
+        $this->add_control(
+                'order', [
+            'label' => __('Order', 'e-addons'),
+            'type' => Controls_Manager::SELECT,
+            'options' => [
+                'ASC' => 'ASC',
+                'DESC' => 'DESC'
+            ],
+            'default' => 'DESC',
+            'condition' => [
+                'query_type' => ['get_attachments', 'automatic_mode'],
+                'orderby!' => ['random'],
+            ],
+                ]
         );
         // --------------------------------- [ Posts Exclusion ]
         $this->add_control(
-            'heading_query_exclude',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fas fa-ban" aria-hidden="true"></i> &nbsp;<b>' . __('Exclude', 'e-addons') . '</b>',
-                'content_classes' => 'e-add-icon-heading',
-                'condition' => [
-                    'query_type' => ['get_attachments', 'automatic_mode']
+                'heading_query_exclude',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fas fa-ban" aria-hidden="true"></i> &nbsp;<b>' . __('Exclude', 'e-addons') . '</b>',
+                    'content_classes' => 'e-add-icon-heading',
+                    'condition' => [
+                        'query_type' => ['get_attachments', 'automatic_mode']
+                    ]
                 ]
-            ]
         );
 
         $this->add_control(
-            'exclude_posts', [
-                'label' => __('Exclude Specific Media', 'e-addons'),
-                'type' => 'file',
-                'placeholder' => __('Excuded Media', 'e-addons'),
-                'label_block' => true,
-                'multiple' => true,
-                'condition' => [
-                    'query_type' => ['get_attachments', 'automatic_mode'],
-                ],
-            ]
+                'exclude_posts', [
+            'label' => __('Exclude Specific Media', 'e-addons'),
+            'type' => 'file',
+            'placeholder' => __('Excuded Media', 'e-addons'),
+            'label_block' => true,
+            'multiple' => true,
+            'condition' => [
+                'query_type' => ['get_attachments', 'automatic_mode'],
+            ],
+                ]
         );
         $this->end_controls_section();
 
@@ -516,32 +516,15 @@ class Query_Media extends Base_Query {
           'mimetype'
 
           -------- DATE -------
-          'querydate_mode'
           ''
           'past'
-          'querydate_field_meta_format'
-          'future'
-          'querydate_field_meta_future'
-          'querydate_field_meta_future_format'
           'today'
-
           'yesterday'
-
           'days'
           'weeks'
           'months'
           'years'
-          'querydate_range'
           'period'
-          'querydate_date_type'
-          'querydate_date_to'
-          'querydate_date_from_dynamic'
-          'querydate_date_to_dynamic'
-
-          'querydate_field'
-          'publish_date'
-          //'post_modified'
-          'custom_meta'
 
           -------- TERMS TAX -------
           'term_from'
@@ -578,516 +561,516 @@ class Query_Media extends Base_Query {
 
          */
         $this->start_controls_section(
-            'section_query_filter', [
-                'label' => '<i class="eaddicon eicon-parallax" aria-hidden="true"></i> ' . __('Query Filter', 'e-addons'),
-                'tab' => 'e_query',
-                'condition' => [
-                    'query_type' => ['get_attachments', 'automatic_mode']
-                ]
+                'section_query_filter', [
+            'label' => '<i class="eaddicon eicon-parallax" aria-hidden="true"></i> ' . __('Query Filter', 'e-addons'),
+            'tab' => 'e_query',
+            'condition' => [
+                'query_type' => ['get_attachments', 'automatic_mode']
             ]
+                ]
         );
         $this->add_control(
-            'query_filter', [
-                'label' => __('Filter by', 'e-addons'),
-                'type' => Controls_Manager::SELECT2,
-                'options' => [
-                    'date' => 'Date',
-                    'term' => 'Term',
-                    'author' => 'Author',
-                    'metakey' => 'Meta key',
-                    'search' => 'Search',
-                    'mimetype' => 'Mime Type'
-                ],
-                'multiple' => true,
-                'label_block' => true,
-                'default' => [],
-            ]
+                'query_filter', [
+            'label' => __('Filter by', 'e-addons'),
+            'type' => Controls_Manager::SELECT2,
+            'options' => [
+                'date' => 'Date',
+                'term' => 'Term',
+                'author' => 'Author',
+                'metakey' => 'Meta key',
+                'search' => 'Search',
+                'mimetype' => 'Mime Type'
+            ],
+            'multiple' => true,
+            'label_block' => true,
+            'default' => [],
+                ]
         );
         // ******************** MimeType
         // get_available_post_mime_types()
         // get_allowed_mime_types()
         // 
         $this->add_control(
-            'filter_mimetype', [
-                'label' => __('Mime Types', 'e-addons'),
-                'type' => Controls_Manager::SELECT2,
-                'multiple' => true,
-                'label_block' => true,
-                'options' => Query_Utils::get_available_mime_types_options(),
-                'default' => 'all',
-                'place_holder' => 'Select specific Mime Types',
-                'toggle' => false,
-                'condition' => [
-                    'query_filter' => 'mimetype'
-                ]
+                'filter_mimetype', [
+            'label' => __('Mime Types', 'e-addons'),
+            'type' => Controls_Manager::SELECT2,
+            'multiple' => true,
+            'label_block' => true,
+            'options' => Query_Utils::get_available_mime_types_options(),
+            'default' => 'all',
+            'place_holder' => 'Select specific Mime Types',
+            'toggle' => false,
+            'condition' => [
+                'query_filter' => 'mimetype'
             ]
+                ]
         );
         // ******************** Search
         $this->add_control(
-            'heading_query_filter_search',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fa fa-search" aria-hidden="true"></i> ' . __('Search Filters', 'e-addons'),
-                'content_classes' => 'e-add-icon-heading',
-                'condition' => [
-                    'query_filter' => 'search'
-                ],
-            ]
-        );
-        $this->add_control(
-            'search_field_value', [
-                'label' => __('Search Value', 'elementor'),
-                'type' => Controls_Manager::TEXT,
-                'label_block' => true,
-                'default' => '',
-                'condition' => [
-                    'query_filter' => 'search'
+                'heading_query_filter_search',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fa fa-search" aria-hidden="true"></i> ' . __('Search Filters', 'e-addons'),
+                    'content_classes' => 'e-add-icon-heading',
+                    'condition' => [
+                        'query_filter' => 'search'
+                    ],
                 ]
-            ]
         );
         $this->add_control(
-            'info_filter_search',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fa fa-info" aria-hidden="true"></i> ' . __('Prepending a term with a hyphen will exclude posts matching that term. Eg, "pillow -sofa" will return posts containing "pillow" but not "sofa".', 'e-addons'),
-                'content_classes' => 'e-add-info-panel',
-                'condition' => [
-                    'query_filter' => 'search'
-                ],
+                'search_field_value', [
+            'label' => __('Search Value', 'elementor'),
+            'type' => Controls_Manager::TEXT,
+            'label_block' => true,
+            'default' => '',
+            'condition' => [
+                'query_filter' => 'search'
             ]
+                ]
+        );
+        $this->add_control(
+                'info_filter_search',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fa fa-info" aria-hidden="true"></i> ' . __('Prepending a term with a hyphen will exclude posts matching that term. Eg, "pillow -sofa" will return posts containing "pillow" but not "sofa".', 'e-addons'),
+                    'content_classes' => 'e-add-info-panel',
+                    'condition' => [
+                        'query_filter' => 'search'
+                    ],
+                ]
         );
         // +********************* Date
         $this->add_control(
-            'heading_query_filter_date',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fa fa-calendar" aria-hidden="true"></i> ' . __('Date Filters', 'e-addons'),
-                'label_block' => false,
-                'content_classes' => 'e-add-icon-heading',
-                'condition' => [
-                    'query_filter' => 'date',
-                ],
-            ]
+                'heading_query_filter_date',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fa fa-calendar" aria-hidden="true"></i> ' . __('Date Filters', 'e-addons'),
+                    'label_block' => false,
+                    'content_classes' => 'e-add-icon-heading',
+                    'condition' => [
+                        'query_filter' => 'date',
+                    ],
+                ]
         );
         $this->add_control(
-            'querydate_mode', [
-                'label' => __('Date Filter', 'e-addons'),
-                'type' => Controls_Manager::SELECT,
-                'default' => '',
-                'label_block' => true,
-                'options' => [
-                    '' => __('Default (Past)', 'e-addons'),
-                    'future' => __('Future', 'e-addons'),
-                    'today' => __('Today', 'e-addons'),
-                    'yesterday' => __('Yesterday', 'e-addons'),
-                    'days' => __('Past Days', 'e-addons'),
-                    'weeks' => __('Past Weeks', 'e-addons'),
-                    'months' => __('Past Months', 'e-addons'),
-                    'years' => __('Past Years', 'e-addons'),
-                    'period' => __('Period', 'e-addons'),
-                ],
-                'condition' => [
-                    'query_filter' => 'date',
-                ],
-            ]
+                'querydate_mode', [
+            'label' => __('Date Filter', 'e-addons'),
+            'type' => Controls_Manager::SELECT,
+            'default' => '',
+            'label_block' => true,
+            'options' => [
+                '' => __('Default (Past)', 'e-addons'),
+                //'future' => __('Future', 'e-addons'),
+                'today' => __('Today', 'e-addons'),
+                'yesterday' => __('Yesterday', 'e-addons'),
+                'days' => __('Past Days', 'e-addons'),
+                'weeks' => __('Past Weeks', 'e-addons'),
+                'months' => __('Past Months', 'e-addons'),
+                'years' => __('Past Years', 'e-addons'),
+                'period' => __('Period', 'e-addons'),
+            ],
+            'condition' => [
+                'query_filter' => 'date',
+            ],
+                ]
         );
 
         // number of days / months / years elapsed
         $this->add_control(
-            'querydate_range', [
-                'label' => __('Number of (days/months/years) elapsed', 'e-addons'),
-                'label_block' => false,
-                'type' => Controls_Manager::NUMBER,
-                'default' => 1,
-                'condition' => [
-                    'query_filter' => 'date',
-                    'querydate_mode' => ['days', 'weeks', 'months', 'years']
+                'querydate_range', [
+            'label' => __('Number of (days/months/years) elapsed', 'e-addons'),
+            'label_block' => false,
+            'type' => Controls_Manager::NUMBER,
+            'default' => 1,
+            'condition' => [
+                'query_filter' => 'date',
+                'querydate_mode' => ['days', 'weeks', 'months', 'years']
+            ]
                 ]
-            ]
         );
         $this->add_control(
-            'querydate_date_from', [
-                'label' => __('Date FROM', 'e-addons'),
-                'type' => Controls_Manager::DATE_TIME,
-                'label_block' => false,
-                'condition' => [
-                    'query_filter' => 'date',
-                    'querydate_mode' => 'period',
-                ],
-            ]
+                'querydate_date_from', [
+            'label' => __('Date FROM', 'e-addons'),
+            'type' => Controls_Manager::DATE_TIME,
+            'label_block' => false,
+            'condition' => [
+                'query_filter' => 'date',
+                'querydate_mode' => 'period',
+            ],
+                ]
         );
         $this->add_control(
-            'querydate_date_to', [
-                'label' => __('Date TO', 'e-addons'),
-                'type' => Controls_Manager::DATE_TIME,
-                'label_block' => false,
-                'condition' => [
-                    'query_filter' => 'date',
-                    'querydate_mode' => 'period',
-                ],
-            ]
+                'querydate_date_to', [
+            'label' => __('Date TO', 'e-addons'),
+            'type' => Controls_Manager::DATE_TIME,
+            'label_block' => false,
+            'condition' => [
+                'query_filter' => 'date',
+                'querydate_mode' => 'period',
+            ],
+                ]
         );
 
         // +********************* Term Taxonomy
         $this->add_control(
-            'heading_query_filter_term',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fa fa-folder-o" aria-hidden="true"></i> ' . __('Term Filters', 'e-addons'),
-                'content_classes' => 'e-add-icon-heading',
-                'condition' => [
-                    'query_filter' => 'term'
-                ],
-            ]
+                'heading_query_filter_term',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fa fa-folder-o" aria-hidden="true"></i> ' . __('Term Filters', 'e-addons'),
+                    'content_classes' => 'e-add-icon-heading',
+                    'condition' => [
+                        'query_filter' => 'term'
+                    ],
+                ]
         );
         // From Post or Meta
         $this->add_control(
-            'term_from', [
-                'label' => __('Type', 'e-addons'),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => false,
-                'options' => [
-                    'post_term' => [
-                        'title' => __('Select Term', 'e-addons'),
-                        'icon' => 'fa fa-tag',
-                    ],
-                    'custom_meta' => [
-                        'title' => __('Media Meta Term', 'e-addons'),
-                        'icon' => 'fa fa-square',
-                    ],
-                    'current_term' => [
-                        'title' => __('Current Term', 'e-addons'),
-                        'icon' => 'fa fa-cog',
-                    ],
+                'term_from', [
+            'label' => __('Type', 'e-addons'),
+            'type' => Controls_Manager::CHOOSE,
+            'label_block' => false,
+            'options' => [
+                'post_term' => [
+                    'title' => __('Select Term', 'e-addons'),
+                    'icon' => 'fa fa-tag',
                 ],
-                'default' => 'post_term',
-                'toggle' => false,
-                'condition' => [
-                    'query_filter' => 'term'
-                ]
+                'custom_meta' => [
+                    'title' => __('Media Meta Term', 'e-addons'),
+                    'icon' => 'fa fa-square',
+                ],
+                'current_term' => [
+                    'title' => __('Current Term', 'e-addons'),
+                    'icon' => 'fa fa-cog',
+                ],
+            ],
+            'default' => 'post_term',
+            'toggle' => false,
+            'condition' => [
+                'query_filter' => 'term'
             ]
+                ]
         );
         // [Post Meta]
         $this->add_control(
-            'term_field_meta',
-            [
-                'label' => __('Media Term <b>custom meta field</b>', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Search Meta Field', 'e-addons'),
-                'label_block' => true,
-                'query_type' => 'metas',
-                'object_type' => 'attachment',
-                'description' => __('Selected Media Custom field. The meta must return an element of type array or comma separated string that contains the term type IDs. (ex: array [5,27,88] or 5,27,88).', 'e-addons'),
-                'condition' => [
-                    'term_from' => 'custom_meta',
-                    'query_filter' => 'term'
+                'term_field_meta',
+                [
+                    'label' => __('Media Term <b>custom meta field</b>', 'e-addons'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Search Meta Field', 'e-addons'),
+                    'label_block' => true,
+                    'query_type' => 'metas',
+                    'object_type' => 'attachment',
+                    'description' => __('Selected Media Custom field. The meta must return an element of type array or comma separated string that contains the term type IDs. (ex: array [5,27,88] or 5,27,88).', 'e-addons'),
+                    'condition' => [
+                        'term_from' => 'custom_meta',
+                        'query_filter' => 'term'
+                    ]
                 ]
-            ]
         );
 
         // [Post Term]
         $this->add_control(
-            'include_term',
-            [
-                'label' => __('<b>Include</b> Term', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Select Media Terms', 'e-addons'),
-                'label_block' => true,
-                'query_type' => 'terms',
-                'render_type' => 'template',
-                'multiple' => true,
-                'condition' => [
-                    'query_filter' => 'term',
-                    'term_from' => 'post_term'
-                ],
-            ]
+                'include_term',
+                [
+                    'label' => __('<b>Include</b> Term', 'e-addons'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select Media Terms', 'e-addons'),
+                    'label_block' => true,
+                    'query_type' => 'terms',
+                    'render_type' => 'template',
+                    'multiple' => true,
+                    'condition' => [
+                        'query_filter' => 'term',
+                        'term_from' => 'post_term'
+                    ],
+                ]
         );
         $this->add_control(
-            'include_term_combination',
-            [
-                'label' => __('<b>Include</b> Combination', 'e-addons'),
-                'type' => Controls_Manager::CHOOSE,
-                'options' => [
-                    'OR' => [
-                        'title' => __('OR', 'e-addons'),
-                        'icon' => 'fa fa-circle-o',
+                'include_term_combination',
+                [
+                    'label' => __('<b>Include</b> Combination', 'e-addons'),
+                    'type' => Controls_Manager::CHOOSE,
+                    'options' => [
+                        'OR' => [
+                            'title' => __('OR', 'e-addons'),
+                            'icon' => 'fa fa-circle-o',
+                        ],
+                        'AND' => [
+                            'title' => __('AND', 'e-addons'),
+                            'icon' => 'fa fa-circle',
+                        ]
                     ],
-                    'AND' => [
-                        'title' => __('AND', 'e-addons'),
-                        'icon' => 'fa fa-circle',
-                    ]
-                ],
-                'toggle' => false,
-                'default' => 'OR',
-                'conditions' => [
-                    'terms' => [
-                        [
-                            'name' => 'query_filter',
-                            'operator' => 'contains',
-                            'value' => 'term',
-                        ],
-                        [
-                            'name' => 'query_filter',
-                            'operator' => '!=',
-                            'value' => [],
-                        ],
-                        [
-                            'name' => 'include_term',
-                            'operator' => '!=',
-                            'value' => '',
-                        ],
-                        [
-                            'name' => 'include_term',
-                            'operator' => '!=',
-                            'value' => [],
-                        ]/*,
-                        [
-                            'name' => 'term_from',
-                            'value' => 'post_term',
-                        ],*/
+                    'toggle' => false,
+                    'default' => 'OR',
+                    'conditions' => [
+                        'terms' => [
+                            [
+                                'name' => 'query_filter',
+                                'operator' => 'contains',
+                                'value' => 'term',
+                            ],
+                            [
+                                'name' => 'query_filter',
+                                'operator' => '!=',
+                                'value' => [],
+                            ],
+                            [
+                                'name' => 'include_term',
+                                'operator' => '!=',
+                                'value' => '',
+                            ],
+                            [
+                                'name' => 'include_term',
+                                'operator' => '!=',
+                                'value' => [],
+                            ]/* ,
+                          [
+                          'name' => 'term_from',
+                          'value' => 'post_term',
+                          ], */
+                        ]
                     ]
                 ]
-            ]
         );
         $this->add_control(
-            'exclude_term',
-            [
-                'label' => __('<b>Exclude</b> Term', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Select Media Terms', 'e-addons'),
-                'label_block' => true,
-                'query_type' => 'terms',
-                'render_type' => 'template',
-                'multiple' => true,
-                'condition' => [
-                    'query_filter' => 'term',
+                'exclude_term',
+                [
+                    'label' => __('<b>Exclude</b> Term', 'e-addons'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select Media Terms', 'e-addons'),
+                    'label_block' => true,
+                    'query_type' => 'terms',
+                    'render_type' => 'template',
+                    'multiple' => true,
+                    'condition' => [
+                        'query_filter' => 'term',
                     //'term_from' => 'post_term'
-                ],
-            ]
+                    ],
+                ]
         );
         $this->add_control(
-            'exclude_term_combination',
-            [
-                'label' => __('<b>Exclude</b> Combination', 'e-addons'),
-                'type' => Controls_Manager::CHOOSE,
-                'options' => [
-                    'OR' => [
-                        'title' => __('OR', 'e-addons'),
-                        'icon' => 'fa fa-circle-o',
+                'exclude_term_combination',
+                [
+                    'label' => __('<b>Exclude</b> Combination', 'e-addons'),
+                    'type' => Controls_Manager::CHOOSE,
+                    'options' => [
+                        'OR' => [
+                            'title' => __('OR', 'e-addons'),
+                            'icon' => 'fa fa-circle-o',
+                        ],
+                        'AND' => [
+                            'title' => __('AND', 'e-addons'),
+                            'icon' => 'fa fa-circle',
+                        ]
                     ],
-                    'AND' => [
-                        'title' => __('AND', 'e-addons'),
-                        'icon' => 'fa fa-circle',
-                    ]
-                ],
-                'toggle' => false,
-                'default' => 'OR',
-                'conditions' => [
-                    'terms' => [
-                        [
-                            'name' => 'query_filter',
-                            'operator' => 'contains',
-                            'value' => 'term',
-                        ],
-                        [
-                            'name' => 'query_filter',
-                            'operator' => '!=',
-                            'value' => [],
-                        ],
-                        [
-                            'name' => 'exclude_term',
-                            'operator' => '!=',
-                            'value' => '',
-                        ],
-                        [
-                            'name' => 'exclude_term',
-                            'operator' => '!=',
-                            'value' => [],
-                        ]/*,
-                        [
-                            'name' => 'term_from',
-                            'value' => 'post_term',
-                        ],*/
+                    'toggle' => false,
+                    'default' => 'OR',
+                    'conditions' => [
+                        'terms' => [
+                            [
+                                'name' => 'query_filter',
+                                'operator' => 'contains',
+                                'value' => 'term',
+                            ],
+                            [
+                                'name' => 'query_filter',
+                                'operator' => '!=',
+                                'value' => [],
+                            ],
+                            [
+                                'name' => 'exclude_term',
+                                'operator' => '!=',
+                                'value' => '',
+                            ],
+                            [
+                                'name' => 'exclude_term',
+                                'operator' => '!=',
+                                'value' => [],
+                            ]/* ,
+                          [
+                          'name' => 'term_from',
+                          'value' => 'post_term',
+                          ], */
+                        ]
                     ]
                 ]
-            ]
         );
 
         // +********************* Author
         $this->add_control(
-            'heading_query_filter_author',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fa fa-user-circle-o" aria-hidden="true"></i> ' . __('Author Filters', 'e-addons'),
-                'content_classes' => 'e-add-icon-heading',
-                'condition' => [
-                    'query_filter' => 'author'
-                ],
-            ]
+                'heading_query_filter_author',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fa fa-user-circle-o" aria-hidden="true"></i> ' . __('Author Filters', 'e-addons'),
+                    'content_classes' => 'e-add-icon-heading',
+                    'condition' => [
+                        'query_filter' => 'author'
+                    ],
+                ]
         );
         // From: Post, Meta or Current
         $this->add_control(
-            'author_from', [
-                'label' => __('Type', 'e-addons'),
-                'type' => Controls_Manager::CHOOSE,
-                'label_block' => false,
-                'options' => [
-                    'post_author' => [
-                        'title' => __('Select Author', 'e-addons'),
-                        'icon' => 'fa fa-users',
-                    ],
-                    'custom_meta' => [
-                        'title' => __('Post Meta Author', 'e-addons'),
-                        'icon' => 'fa fa-square',
-                    ],
-                    'current_author' => [
-                        'title' => __('Current Author', 'e-addons'),
-                        'icon' => 'fa fa-user-cog',
-                    ],
+                'author_from', [
+            'label' => __('Type', 'e-addons'),
+            'type' => Controls_Manager::CHOOSE,
+            'label_block' => false,
+            'options' => [
+                'post_author' => [
+                    'title' => __('Select Author', 'e-addons'),
+                    'icon' => 'fa fa-users',
                 ],
-                'default' => 'post_author',
-                'toggle' => false,
-                'condition' => [
-                    'query_filter' => 'author'
+                'custom_meta' => [
+                    'title' => __('Post Meta Author', 'e-addons'),
+                    'icon' => 'fa fa-square',
                 ],
-            ]
+                'current_author' => [
+                    'title' => __('Current Author', 'e-addons'),
+                    'icon' => 'fa fa-user-cog',
+                ],
+            ],
+            'default' => 'post_author',
+            'toggle' => false,
+            'condition' => [
+                'query_filter' => 'author'
+            ],
+                ]
         );
         // [Post Meta]
         $this->add_control(
-            'author_field_meta',
-            [
-                'label' => __('Media Author <b>custom meta field</b>', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Search Custom Author meta', 'e-addons'),
-                'label_block' => true,
-                'query_type' => 'metas',
-                'object_type' => 'attachment',
-                'default' => 'nickname',
-                'description' => __('Selected Media Meta value. Selected Media Custom field. The meta must return an element of type array or comma separated string that contains the term type IDs. (ex: array [5,27,88] or 5,27,88).', 'e-addons'),
-                'condition' => [
-                    'author_from' => 'custom_meta',
-                    'query_filter' => 'author'
+                'author_field_meta',
+                [
+                    'label' => __('Media Author <b>custom meta field</b>', 'e-addons'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Search Custom Author meta', 'e-addons'),
+                    'label_block' => true,
+                    'query_type' => 'metas',
+                    'object_type' => 'attachment',
+                    'default' => 'nickname',
+                    'description' => __('Selected Media Meta value. Selected Media Custom field. The meta must return an element of type array or comma separated string that contains the term type IDs. (ex: array [5,27,88] or 5,27,88).', 'e-addons'),
+                    'condition' => [
+                        'author_from' => 'custom_meta',
+                        'query_filter' => 'author'
+                    ]
                 ]
-            ]
         );
 
         // [Select Authors]
         $this->add_control(
-            'include_author',
-            [
-                'label' => __('<b>Include</b> Author', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Select Authors', 'e-addons'),
-                'label_block' => true,
-                'multiple' => true,
-                'query_type' => 'users',
-                //'object_type'   => 'editor',
-                'description' => __('Filter Medias by selected Authors', 'e-addons'),
-                'condition' => [
-                    'query_filter' => 'author',
-                    'author_from' => 'post_author'
+                'include_author',
+                [
+                    'label' => __('<b>Include</b> Author', 'e-addons'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select Authors', 'e-addons'),
+                    'label_block' => true,
+                    'multiple' => true,
+                    'query_type' => 'users',
+                    //'object_type'   => 'editor',
+                    'description' => __('Filter Medias by selected Authors', 'e-addons'),
+                    'condition' => [
+                        'query_filter' => 'author',
+                        'author_from' => 'post_author'
+                    ]
                 ]
-            ]
         );
 
         $this->add_control(
-            'exclude_author',
-            [
-                'label' => __('<b>Exclude</b> Author', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Select Authors', 'e-addons'),
-                'label_block' => true,
-                'multiple' => true,
-                'query_type' => 'users',
-                //'object_type'   => 'editor',
-                'description' => __('Filter Medias by selected Authors', 'e-addons'),
-                'separator' => 'after',
-                'condition' => [
-                    'query_filter' => 'author',
-                    'author_from' => 'post_author'
+                'exclude_author',
+                [
+                    'label' => __('<b>Exclude</b> Author', 'e-addons'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select Authors', 'e-addons'),
+                    'label_block' => true,
+                    'multiple' => true,
+                    'query_type' => 'users',
+                    //'object_type'   => 'editor',
+                    'description' => __('Filter Medias by selected Authors', 'e-addons'),
+                    'separator' => 'after',
+                    'condition' => [
+                        'query_filter' => 'author',
+                        'author_from' => 'post_author'
+                    ]
                 ]
-            ]
         );
 
         // ****************** Meta key
         $this->add_control(
-            'heading_query_filter_metakey',
-            [
-                'type' => Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<i class="fa fa-key" aria-hidden="true"></i> ' . __('Custom Meta Field Filters', 'e-addons'),
-                'content_classes' => 'e-add-icon-heading',
-                'condition' => [
-                    'query_filter' => 'metakey'
-                ],
-            ]
+                'heading_query_filter_metakey',
+                [
+                    'type' => Controls_Manager::RAW_HTML,
+                    'show_label' => false,
+                    'raw' => '<i class="fa fa-key" aria-hidden="true"></i> ' . __('Custom Meta Field Filters', 'e-addons'),
+                    'content_classes' => 'e-add-icon-heading',
+                    'condition' => [
+                        'query_filter' => 'metakey'
+                    ],
+                ]
         );
 
         // [Post Meta]
         $repeater_metakeys = new Repeater();
 
         $repeater_metakeys->add_control(
-            'metakey_field_meta',
-            [
-                'label' => __('Media Custom Field <b>custom meta key</b>', 'e-addons'),
-                'type' => 'e-query',
-                'placeholder' => __('Meta key or Name', 'e-addons'),
-                'label_block' => true,
-                'query_type' => 'metas',
-                'object_type' => 'attachment',
-                'description' => __('Selected Post Meta value. The meta must return an element of type array or comma separated string that contains IDs of type metakey . (es: array[5,27,88] o 5,27,88)', 'e-addons'),
-            ]
+                'metakey_field_meta',
+                [
+                    'label' => __('Media Custom Field <b>custom meta key</b>', 'e-addons'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Meta key or Name', 'e-addons'),
+                    'label_block' => true,
+                    'query_type' => 'metas',
+                    'object_type' => 'attachment',
+                    'description' => __('Selected Post Meta value. The meta must return an element of type array or comma separated string that contains IDs of type metakey . (es: array[5,27,88] o 5,27,88)', 'e-addons'),
+                ]
         );
         $repeater_metakeys->add_control(
-            'metakey_field_meta_type', [
-                'label' => __('Value Type', 'elementor'),
-                'description' => __('Custom field type. Default value is (CHAR)', 'e-addons'),
-                'type' => Controls_Manager::SELECT,
-                'options' => Query_Utils::get_meta_comparetype(),
-                'default' => 'CHAR',
-                'label_block' => true
-            ]
+                'metakey_field_meta_type', [
+            'label' => __('Value Type', 'elementor'),
+            'description' => __('Custom field type. Default value is (CHAR)', 'e-addons'),
+            'type' => Controls_Manager::SELECT,
+            'options' => Query_Utils::get_meta_comparetype(),
+            'default' => 'CHAR',
+            'label_block' => true
+                ]
         );
         $repeater_metakeys->add_control(
-            'metakey_field_meta_compare', [
-                'label' => __('Compare Operator', 'elementor'),
-                'description' => __('Comparison operator. Default value is (=)', 'e-addons'),
-                'type' => Controls_Manager::SELECT,
-                'options' => Query_Utils::get_meta_compare(),
-                'default' => '=',
-                'label_block' => true
-            ]
+                'metakey_field_meta_compare', [
+            'label' => __('Compare Operator', 'elementor'),
+            'description' => __('Comparison operator. Default value is (=)', 'e-addons'),
+            'type' => Controls_Manager::SELECT,
+            'options' => Query_Utils::get_meta_compare(),
+            'default' => '=',
+            'label_block' => true
+                ]
         );
 
         $repeater_metakeys->add_control(
-            'metakey_field_meta_value', [
-                'label' => __('Media Field Value', 'elementor'),
-                'type' => Controls_Manager::TEXT,
-                'description' => __('The specific value of the Media Field', 'elementor'),
-                'label_block' => true,
-                'condition' => [
-                    'metakey_field_meta_compare!' => ['EXISTS', 'NOT EXISTS']
-                ]
+                'metakey_field_meta_value', [
+            'label' => __('Media Field Value', 'elementor'),
+            'type' => Controls_Manager::TEXT,
+            'description' => __('The specific value of the Media Field', 'elementor'),
+            'label_block' => true,
+            'condition' => [
+                'metakey_field_meta_compare!' => ['EXISTS', 'NOT EXISTS']
             ]
+                ]
         );
         // il metakey REPEATER
         $this->add_control(
-            'metakey_list',
-            [
-                'label' => __('Custom Meta Fields', 'e-addons'),
-                'type' => Controls_Manager::REPEATER,
-                'fields' => $repeater_metakeys->get_controls(),
-                'title_field' => '{{{ metakey_field_meta }}}',
-                'prevent_empty' => false,
-                'condition' => [
-                    'query_filter' => 'metakey',
+                'metakey_list',
+                [
+                    'label' => __('Custom Meta Fields', 'e-addons'),
+                    'type' => Controls_Manager::REPEATER,
+                    'fields' => $repeater_metakeys->get_controls(),
+                    'title_field' => '{{{ metakey_field_meta }}}',
+                    'prevent_empty' => false,
+                    'condition' => [
+                        'query_filter' => 'metakey',
+                    ]
                 ]
-            ]
         );
         $this->add_control(
                 'metakey_combination',
@@ -1133,7 +1116,7 @@ class Query_Media extends Base_Query {
                 ]
         );
         $this->end_controls_section();
-        
+
         $this->add_no_result_section();
     }
 
@@ -1403,14 +1386,14 @@ class Query_Media extends Base_Query {
 
             case 'custommeta_source':
                 /*
-                $custommeta_source_key = $settings['custommeta_source_key'];
-                //$custommeta_source_type = $settings['custommeta_source_type'];
-                if (empty($custommeta_source_key))
-                    return;
-                $type_of_location = Query_Utils::is_type_of();
-                $id_of_location = Query_Utils::is_id_of();
-                $custommeta_source_value = get_metadata($type_of_location, $id_of_location, $custommeta_source_key, true);
-                */               
+                  $custommeta_source_key = $settings['custommeta_source_key'];
+                  //$custommeta_source_type = $settings['custommeta_source_type'];
+                  if (empty($custommeta_source_key))
+                  return;
+                  $type_of_location = Query_Utils::is_type_of();
+                  $id_of_location = Query_Utils::is_id_of();
+                  $custommeta_source_value = get_metadata($type_of_location, $id_of_location, $custommeta_source_key, true);
+                 */
                 $custommeta_source_value = $this->get_custom_meta_source_value($settings);
                 if (!empty($custommeta_source_value)) {
                     // default args
@@ -1420,14 +1403,14 @@ class Query_Media extends Base_Query {
                     $args['post__in'] = $custommeta_source_value;
                 }
                 break;
-            case 'specific_posts':                
+            case 'specific_posts':
                 if (!empty($settings['specific_attachments'])) {
                     $items_specific_posts = array();
                     foreach ($settings['specific_attachments'] as $item_sp) {
                         if (!empty($item_sp['id'])) {
                             array_push($items_specific_posts, $item_sp['id']);
                         }
-                    }                
+                    }
                     if (count($items_specific_posts)) {
                         $args['posts_per_page'] = -1;
                         $args['orderby'] = 'post__in';
@@ -1589,8 +1572,8 @@ class Query_Media extends Base_Query {
         if (!empty($settings['exclude_author'])) {
             $author_args['author__not_in'] = $settings['exclude_author'];
         }
-        
-        
+
+
         return $author_args;
     }
 
@@ -1677,16 +1660,15 @@ class Query_Media extends Base_Query {
                 }
                 break;
         }
-        
+
         // l'esclusione vale in ogni caso, permette di modellare la queri in caso di termini multipli
         if (!empty($settings['exclude_term'])) {
             $terms_excluded = $settings['exclude_term'];
-            $terms_excluded = Utils::explode( $terms_excluded );
+            $terms_excluded = Utils::explode($terms_excluded);
         }
         //risolvo bug: quando il dato è una stringa o numero e non Array, quindi converto.
-        $terms_included = Utils::explode( $terms_included );        
+        $terms_included = Utils::explode($terms_included);
         //var_dump($terms_included);
-
         //
         $taxquery = array();
         $taxquery_inc = array();
@@ -1737,7 +1719,7 @@ class Query_Media extends Base_Query {
             }
             //var_dump($filtred_terms);
         }
-        
+
         $taxquery_inc['relation'] = $settings['include_term_combination'];
         $taxquery_exc['relation'] = $settings['exclude_term_combination'];
         $taxquery = [$taxquery_inc, $taxquery_exc];
@@ -1751,84 +1733,39 @@ class Query_Media extends Base_Query {
     }
 
     protected function get_date_filter($settings) {
-        /*
-          -------- DATE -------
-          'querydate_mode'
-          ''
-          'past'
-          'querydate_field_meta_format'
-          'future'
-          'querydate_field_meta_future'
-          'querydate_field_meta_future_format'
-          'today'
+        /* -------- DATE ------- */
 
-          'yesterday'
-
-          'days'
-          'weeks'
-          'months'
-          'years'
-          'querydate_range'
-          'period'
-          'querydate_date_type'
-          'querydate_date_to'
-
-          'querydate_field'
-          'publish_date'
-          //'post_modified'
-          'custom_meta'
-         */
         $date_args = array();
         if ($settings['querydate_mode']) {
 
-            $querydate_field_meta_format = 'Y-m-d';
-            // get the field to compare
-            $date_field = $settings['querydate_field'];
-
+            $date_after = $date_before = false;
             switch ($settings['querydate_mode']) {
                 case 'past':
-                    if ($settings['querydate_field'] == 'custom_meta') {
-                        $date_field = $settings['querydate_field_meta'];
-                        $querydate_field_meta_format = $settings['querydate_field_meta_format'];
-                    }
+                    $date_before = date('Y-m-d H:i:s');
                     break;
                 case 'future':
-                    $date_field = $settings['querydate_field_meta_future'];
-                    $querydate_field_meta_format = $settings['querydate_field_meta_future_format'];
+                    $date_after = date('Y-m-d H:i:s');
                     break;
-            }
+                case 'today':
+                    $date_after = date('Y-m-d 00:00:00');
+                    $date_before = date('Y-m-d 23:23:59');
+                    break;
+                case 'yesterday':
+                    $date_after = date('Y-m-d 00:00:00', strtotime('-1 day'));
+                    $date_before = date('Y-m-d 23:23:59', strtotime('-1 day'));
+                    break;
+                case 'days':
+                case 'weeks':
+                case 'months':
+                case 'years':
+                    $date_after = '-' . $settings['querydate_range'] . ' ' . $settings['querydate_mode'];
+                    $date_before = 'now';
+                    break;
+                case 'period':
+                    $date_after = $settings['querydate_date_from'];
+                    $date_before = $settings['querydate_date_to'];
+                    break;
 
-            if ($date_field) {
-                $date_after = $date_before = false;
-                switch ($settings['querydate_mode']) {
-                    case 'past':
-                        $date_before = date('Y-m-d H:i:s');
-                        break;
-                    case 'future':
-                        $date_after = date('Y-m-d H:i:s');
-                        break;
-                    case 'today':
-                        $date_after = date('Y-m-d 00:00:00');
-                        $date_before = date('Y-m-d 23:23:59');
-                        break;
-                    case 'yesterday':
-                        $date_after = date('Y-m-d 00:00:00', strtotime('-1 day'));
-                        $date_before = date('Y-m-d 23:23:59', strtotime('-1 day'));
-                        break;
-                    case 'days':
-                    case 'weeks':
-                    case 'months':
-                    case 'years':
-                        $date_after = '-' . $settings['querydate_range'] . ' ' . $settings['querydate_mode'];
-                        $date_before = 'now';
-                        break;
-                    case 'period':
-                        $date_after = $settings['querydate_date_from'];
-                        $date_before = $settings['querydate_date_to'];
-                        break;
-                }
-                //
-                if ($date_field == 'publish_date') {
                     // compare by post publish date
                     $date_args['date_query'] = array(
                         array(
@@ -1837,41 +1774,6 @@ class Query_Media extends Base_Query {
                             'inclusive' => true,
                         )
                     );
-                } else {
-                    // compare by post meta
-                    if ($date_after)
-                        $date_after = date($querydate_field_meta_format, strtotime($date_after));
-                    if ($date_before)
-                        $date_before = date($querydate_field_meta_format, strtotime($date_before));
-                    if ($date_before && $date_after) {
-                        $date_args['meta_query'] = array(
-                            array(
-                                'key' => $date_field,
-                                'value' => array($date_after, $date_before),
-                                'meta_type' => 'DATETIME',
-                                'compare' => 'BETWEEN'
-                            )
-                        );
-                    } else if ($date_after) {
-                        $date_args['meta_query'] = array(
-                            array(
-                                'key' => $date_field,
-                                'value' => $date_after,
-                                'meta_type' => 'DATETIME',
-                                'compare' => '>='
-                            )
-                        );
-                    } else {
-                        $date_args['meta_query'] = array(
-                            array(
-                                'key' => $date_field,
-                                'value' => $date_before,
-                                'meta_type' => 'DATETIME',
-                                'compare' => '<='
-                            )
-                        );
-                    }
-                }
             }
         }
         return $date_args;

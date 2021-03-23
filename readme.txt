@@ -3,8 +3,8 @@ Contributors: nerdsfarm, poglie, frapesce
 Donate link: https://e-addons.com/
 Tags: loop, query, archive, template, media, skins, image, document
 Requires at least: 4.7
-Tested up to: 5.6.2
-Stable tag: 1.0.2
+Tested up to: 5.7.2
+Stable tag: 1.0.3
 Requires PHP: 7.1
 
 Create your own Media Gallery in a creative and simple way
@@ -14,6 +14,9 @@ Create your own Media Gallery in a creative and simple way
 Create a custom Media query, choose skin, order and style of any image item to get thousands of different solutions.
 
 == Changelog ==
+
+= 1.0.3 =
+* Fix: Item field HTML Tag
 
 = 1.0.2 =
 * Add: Custom Field type Number

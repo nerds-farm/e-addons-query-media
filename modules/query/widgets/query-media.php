@@ -229,7 +229,7 @@ class Query_Media extends Base_Query {
                     [
                         'name' => 'item_type',
                         'operator' => '!in',
-                        'value' => ['item_author', 'item_readmore', 'item_custommeta', 'item_template',
+                        'value' => ['item_author', /*'item_readmore',*/ 'item_custommeta', 'item_template',
                             'item_caption',
                             'item_alternativetext',
                             'item_imagemeta',

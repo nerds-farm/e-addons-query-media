@@ -131,13 +131,12 @@ class Query_Media extends Base_Query {
         $repeater->start_controls_tab('tab_content', [
             'label' => __('Content', 'e-addons'),
         ]);
-        $repeater->add_control(
-                'item_text_label', [
-            'label' => __('Label', 'e-addons'),
-            'type' => Controls_Manager::TEXT,
-                ]
-        );
+
         // CONTENT - TAB
+        
+        // +********************* Common
+        $this->controls_items_common_content($repeater);
+        
         // +********************* Label
         $this->controls_items_label_content($repeater);
 

@@ -1457,10 +1457,9 @@ class Query_Media extends Base_Query {
             $args['order'] = $settings['order'];
 
         // exclusion posts
-        $excludedPosts = array();
-        if (!empty($settings['exclude_posts']))
-            array_push($excludedPosts, $settings['exclude_posts']);
-        $args['post__not_in'] = $excludedPosts;
+        if (!empty($settings['exclude_posts'])) {
+            $args['post__not_in'] = Utils::explode($settings['exclude_posts']);
+        }
 
         /*
           'query_filter'

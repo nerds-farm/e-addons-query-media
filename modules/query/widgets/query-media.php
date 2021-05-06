@@ -289,6 +289,8 @@ class Query_Media extends Base_Query {
                 ]
         );
 
+        $this->controls_items_grid_debug($this);
+        
         $this->end_controls_section();
 
 

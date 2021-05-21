@@ -1506,8 +1506,8 @@ class Query_Media extends Base_Query {
             }
         }
 
-        $query_p = new \WP_Query($args);
-        $this->query = $query_p;
+        $query_m = new \WP_Query($args);
+        $this->query = $query_m;
     }
 
     protected function get_mimetype_filter($settings) {

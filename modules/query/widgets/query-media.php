@@ -61,7 +61,8 @@ class Query_Media extends Base_Query {
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Gridfilters( $this ) );
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Timeline( $this ) );
         $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Table($this));
-        $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Simple_List( $this ));        
+        $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Simple_List( $this ));
+        $this->add_skin(new \EAddonsQuery\Modules\Query\Skins\Horizontal_Scroll($this));       
     }
 
     protected function _register_controls() {
@@ -1397,6 +1398,7 @@ class Query_Media extends Base_Query {
                   $custommeta_source_value = get_metadata($type_of_location, $id_of_location, $custommeta_source_key, true);
                  */
                 $custommeta_source_value = $this->get_custom_meta_source_value($settings);
+                //var_dump($custommeta_source_value);
                 if (!empty($custommeta_source_value)) {
                     // default args
                     $args['posts_per_page'] = -1;

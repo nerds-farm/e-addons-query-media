@@ -62,7 +62,8 @@ class Query_Media extends Base_Query {
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Timeline( $this ) );
         $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Table($this));
         $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Simple_List( $this ));
-        $this->add_skin(new \EAddonsQuery\Modules\Query\Skins\Horizontal_Scroll($this));       
+        
+  
     }
 
     protected function _register_controls() {

@@ -61,9 +61,7 @@ class Query_Media extends Base_Query {
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Gridfilters( $this ) );
         //$this->add_skin( new \EAddonsQuery\Modules\Query\Skins\Timeline( $this ) );
         $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Table($this));
-        $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Simple_List( $this ));
-        
-  
+        $this->add_skin(new \EAddonsForElementor\Modules\Query\Skins\Simple_List($this));
     }
 
     protected function _register_controls() {
@@ -137,10 +135,9 @@ class Query_Media extends Base_Query {
         ]);
 
         // CONTENT - TAB
-        
         // +********************* Common
         $this->controls_items_common_content($repeater);
-        
+
         // +********************* Label
         $this->controls_items_label_content($repeater);
 
@@ -172,7 +169,6 @@ class Query_Media extends Base_Query {
 
         // +********************* ImageMeta (Dimension, Size, File, [copyright, iso, focal, ecc])
         $this->controls_items_imagemeta_content($repeater);
-
 
         $repeater->end_controls_tab();
 
@@ -232,7 +228,7 @@ class Query_Media extends Base_Query {
                     [
                         'name' => 'item_type',
                         'operator' => '!in',
-                        'value' => ['item_author', /*'item_readmore',*/ 'item_custommeta', 'item_template',
+                        'value' => ['item_author', /* 'item_readmore', */ 'item_custommeta', 'item_template',
                             'item_caption',
                             'item_alternativetext',
                             'item_imagemeta',
@@ -294,9 +290,8 @@ class Query_Media extends Base_Query {
         );
 
         $this->controls_items_grid_debug($this);
-        
-        $this->end_controls_section();
 
+        $this->end_controls_section();
 
         //@p il TAB Query
         // ------------------------------------------------------------------ [SECTION - QUERY MEDIA]
@@ -1141,19 +1136,51 @@ class Query_Media extends Base_Query {
                     'content_classes' => 'e-add-icon-heading',
                 ]
         );
+
+        $options = [
+            'file' => __('Media File', 'elementor'),
+            'attachment' => __('Attachment Page', 'elementor'),
+            'custom' => __('Custom'),
+            'none' => __('None', 'elementor'),
+        ];
+        if (Utils::is_plugin_active('elementor-pro') && Utils::is_plugin_active('e-addons-extended')) {
+            $options['popup'] = __('Open PopUp');
+        }
+
         $this->add_control(
                 'gallery_link',
                 [
                     'label' => __('Link', 'elementor'),
                     'type' => Controls_Manager::SELECT,
                     'default' => 'file',
-                    'options' => [
-                        'file' => __('Media File', 'elementor'),
-                        'attachment' => __('Attachment Page', 'elementor'),
-                        'none' => __('None', 'elementor'),
-                    ],
+                    'options' => $options,
                 ]
         );
+        $this->add_control(
+                'shortcode_link', [
+            'label' => __('Custom link', 'e-addons'),
+            'type' => Controls_Manager::TEXT,
+            'condition' => [
+                'gallery_link' => ['shortcode', 'custom'],
+            ]
+                ]
+        );
+        if (Utils::is_plugin_active('elementor-pro') || Utils::is_plugin_active('e-addons-extended')) {
+            $this->add_control(
+                    'popup_link', [
+                'label' => __('Open PopUp', 'e-addons'),
+                'type' => 'e-query',
+                'placeholder' => __('Select PopUp', 'e-addons'),
+                'label_block' => true,
+                'query_type' => 'posts',
+                'object_type' => 'elementor_library',
+                'condition' => [
+                    'gallery_link' => 'popup',
+                ]
+                    ]
+            );
+        }
+
         $this->add_control(
                 'open_lightbox',
                 [

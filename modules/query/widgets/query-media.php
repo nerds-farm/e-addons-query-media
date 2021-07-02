@@ -1437,12 +1437,25 @@ class Query_Media extends Base_Query {
                 }
                 break;
             case 'specific_posts':
+                $images = [];
                 if (!empty($settings['specific_attachments'])) {
                     $items_specific_posts = array();
-                    foreach ($settings['specific_attachments'] as $item_sp) {
-                        if (!empty($item_sp['id'])) {
-                            array_push($items_specific_posts, $item_sp['id']);
+                    foreach ($settings['specific_attachments'] as $item) {
+                        if (!empty($item['id'])) {
+                            array_push($items_specific_posts, $item['id']);
+                        } else {
+                            if (is_string($item) && filter_var($item, FILTER_VALIDATE_URL)) {
+                                $images[] = $item;
+                            } else if (is_array($item)) {      
+                                if (!empty($item['url'])) {
+                                    $images[] = $item['url'];
+                                }
+                            }
                         }
+                    }
+                    if (!empty($images)) {
+                        $args['urls'] = $images;      
+                        $args['post__in'] = [0];
                     }
                     if (count($items_specific_posts)) {
                         $args['posts_per_page'] = -1;
@@ -1824,29 +1837,41 @@ class Query_Media extends Base_Query {
             $j = 0;
             $offset = $skin->parent->get_settings_for_display('posts_offset');
             $limit = $skin->parent->get_settings_for_display('posts_limit');
-            while ($query->have_posts()) {
-                $i++;
-                $query->the_post();
-                $continue = false;
-                if ($limit) {
-                    if ($offset) {
-                        if ($i <= $offset) {
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $i++;
+                    $query->the_post();
+                    $continue = false;
+                    if ($limit) {
+                        if ($offset) {
+                            if ($i <= $offset) {
+                                $continue = true;
+                            }
+                        }
+                        if (!$continue) {
+                            $j++;
+                        }
+                        if ($j > $limit) {
                             $continue = true;
                         }
                     }
                     if (!$continue) {
-                        $j++;
-                    }
-                    if ($j > $limit) {
-                        $continue = true;
+                        $skin->current_permalink = get_permalink();
+                        $skin->current_id = get_the_ID();
+                        $skin->current_data = get_post(get_the_ID());
+                        //
+                        $skin->render_element_item();
                     }
                 }
-                if (!$continue) {
-                    $skin->current_permalink = get_permalink();
-                    $skin->current_id = get_the_ID();
-                    $skin->current_data = get_post(get_the_ID());
-                    //
-                    $skin->render_element_item();
+            } else {
+                //var_dump($query);
+                if (!empty($query->query['urls'])) {
+                    foreach ($query->query['urls'] as $key => $img_url) {                        
+                        $skin->current_permalink = $img_url;
+                        $skin->current_id = $key;
+                        $skin->current_data = $img_url;
+                        $skin->render_element_item();
+                    }
                 }
             }
         }
@@ -1854,9 +1879,10 @@ class Query_Media extends Base_Query {
     }
     
     public function should_render($render, $skin, $query) {
-        if (!$query->found_posts) {
+        //var_dump($query);
+        if (!$query->found_posts && !$query->query['urls']) {
             $render = false;
-        }
+        }        
         return $render;
     }
     

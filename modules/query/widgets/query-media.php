@@ -201,15 +201,20 @@ class Query_Media extends Base_Query {
         // -------- COLORS
         //@p le carateristiche grafche del colore testi e background
         $this->controls_items_colors_style($repeater);
-
-        // --------------- LABEL BEFORE
-        //@p le caratteristiche grafiiche ddella label
-        $this->controls_items_label_style($repeater);
-
+        
         // -------- COLORS-HOVER
         //@p le carateristiche grafche del colore testi e background nello statoo di hover
         $this->controls_items_colorshover_style($repeater);
 
+        // --------------- ICON
+        //@p le caratteristiche grafiiche dell'icona
+        $this->controls_items_icon_style($repeater);
+
+        // --------------- LABEL BEFORE
+        //@p le caratteristiche grafiiche della label
+        $this->controls_items_label_style($repeater);
+
+        
         // ------------ SPACES
         //@p le carateristiche grafche le spaziature Padding e margin
         $this->controls_items_spaces_style($repeater);
@@ -229,10 +234,10 @@ class Query_Media extends Base_Query {
                         'name' => 'item_type',
                         'operator' => '!in',
                         'value' => ['item_author', /* 'item_readmore', */ 'item_custommeta', 'item_template',
-                            'item_caption',
+                            /*'item_caption',
                             'item_alternativetext',
                             'item_imagemeta',
-                            'item_mimetype'],
+                            'item_mimetype'*/],
                     ],
                     [
                         'relation' => 'and',

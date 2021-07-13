@@ -1227,7 +1227,7 @@ class Query_Media extends Base_Query {
                 'px' => [
                     'min' => 0.1,
                     'max' => 2,
-                    'step' => 0.1
+                    'step' => 0.01
                 ],
             ],
             'selectors' => [
@@ -1312,7 +1312,7 @@ class Query_Media extends Base_Query {
                 'height_bgimage', [
             'label' => __('Height', 'e-addons'),
             'type' => Controls_Manager::SLIDER,
-            'size_units' => ['px', 'vh'],
+            'size_units' => ['px', '%', 'vh'],
             'range' => [
                 'px' => [
                     'min' => 1,

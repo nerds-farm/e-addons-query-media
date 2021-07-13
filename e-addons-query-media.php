@@ -6,7 +6,7 @@
  * Plugin Name:       e-addons QUERY MEDIA
  * Plugin URI:        https://e-addons.com
  * Description:       Create your own Media Gallery in a creative and simple way
- * Version:           1.2
+ * Version:           1.3
  * Author:            Nerds Farm
  * Author URI:        https://nerds.farm
  * Text Domain:       e-addons-query-media
